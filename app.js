@@ -6,6 +6,14 @@ const filter = document.getElementById('filter');
 const taskInput = document.getElementById('task');
 let taskLabel = document.querySelector('.task-label');
 
+//Function to load all events listeners
+function loadEventListeners() {
+  //Add task event
+  form.addEventListener('submit', addTask);
+  //Remove task event
+  taskList.addEventListener('click', removeTask);
+};
+
 //Call for load all events listeners
 loadEventListeners();
 
@@ -29,7 +37,6 @@ function addTask(e) {
   const link = document.createElement('a');
   link.className = 'delete-item secondary-content';
   link.innerHTML = '<i class="fa fa-remove"></i>';
-  console.log(link);
 
   //Append link to li
   li.appendChild(link);
@@ -42,8 +49,11 @@ function addTask(e) {
 
 }
 
-//Function to load all events listeners
-function loadEventListeners() {
-  //Add task event
-  form.addEventListener('submit', addTask);
-};
+
+//Remove task function
+function removeTask(e) {
+  const deleteItem = document.querySelector('delete-item');
+  if(e.target.parentElement.classList.contains('delete-item')) {
+    e.target.parentElement.parentElement.remove();
+  }
+}
