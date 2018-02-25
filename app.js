@@ -13,32 +13,43 @@ loadEventListeners();
 function addTask(e) {
   e.preventDefault();
 
+  // Define all UI elements as variables with no values
+  let li;
+  let textNode; 
+  let link;
+
+  //Setting the messages in the input window
   if (taskInput.value === '') {
     taskLabel.innerHTML = "Please enter a value.";
   } else if (taskInput.value !== '') {
     taskLabel.innerHTML = "New task";
   }
+  
 
-  //Create li element with a class and a text given from input 
-  const li = document.createElement('li');
-  const textNode = document.createTextNode(taskInput.value);
-  li.className = 'collection-item';
-  li.appendChild(textNode);
+  if (taskInput.value !== "") {
+    //Create li element with a class and a text given from input 
+    textNode = document.createTextNode(taskInput.value);
+    li = document.createElement('li');
+    li.className = 'collection-item';
+    li.appendChild(textNode);
+    console.log('1st value');
 
-  //Create new link element with a class and an icon to delete the item 
-  const link = document.createElement('a');
-  link.className = 'delete-item secondary-content';
-  link.innerHTML = '<i class="fa fa-remove"></i>';
-  console.log(link);
+    //Create new link element with a class and an icon to delete the item 
+    link = document.createElement('a');
+    link.className = 'delete-item secondary-content';
+    link.innerHTML = '<i class="fa fa-remove"></i>';
+    console.log(link);
 
-  //Append link to li
-  li.appendChild(link);
+    //Add item to UI and clear the last given input text
+    //Append link to li
+    li.appendChild(link);
 
-  //Appnd li to ul
-  taskList.appendChild(li);
+    //Appnd li to ul
+    taskList.appendChild(li);
 
-  //Clear input
-  taskInput.value = '';
+    //Clear input
+    taskInput.value = '';
+  }
 
 }
 
