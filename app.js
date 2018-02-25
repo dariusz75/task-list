@@ -9,6 +9,21 @@ let taskLabel = document.querySelector('.task-label');
 //Call for load all events listeners
 loadEventListeners();
 
+
+//Function to load all events listeners
+function loadEventListeners() {
+  
+  //Add task event
+  form.addEventListener('submit', addTask);
+
+  //Remove task event
+  taskList.addEventListener('click', removeTask);
+
+  //Clear tasks
+  clearBtn.addEventListener('click', clearTasks);
+};
+
+
 //Function to add a task
 function addTask(e) {
   e.preventDefault();
@@ -25,7 +40,6 @@ function addTask(e) {
     taskLabel.innerHTML = "New task";
   }
   
-
   if (taskInput.value !== "") {
     //Create li element with a class and a text given from input 
     textNode = document.createTextNode(taskInput.value);
@@ -53,8 +67,20 @@ function addTask(e) {
 
 }
 
-//Function to load all events listeners
-function loadEventListeners() {
-  //Add task event
-  form.addEventListener('submit', addTask);
-};
+
+//Remove task function
+function removeTask(e) {
+  const deleteItem = document.querySelector('delete-item');
+  if(e.target.parentElement.classList.contains('delete-item')) {
+    e.target.parentElement.parentElement.remove();
+  }
+}
+
+// Clear task function
+function clearTasks() {
+  while (taskList.hasChildNodes()) {
+    taskList.removeChild(taskList.firstChild);
+  }
+
+console.log('clear tasks');
+}
